@@ -1,1 +1,2 @@
-# ht6
+# Hack the 6ix Project
+
