@@ -19,9 +19,18 @@ export default class VocabList extends Component {
           note: 'Add Notes'
         },
       }
-    
+
       state = this.initialState
       firstEditable = React.createRef()
+
+      // im trying like this
+      componentDidMount() {
+        axios.get('http://127.0.0.1:5000/vocab')
+          .then(
+            
+            console.log("received")
+          )
+      }
     
       addRow = () => {
         const { store, row } = this.state
