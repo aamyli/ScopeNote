@@ -4,14 +4,6 @@ import diffbot
 from nltk import tokenize
 import unicodedata
 
-def wordCount(dictionary, arr):
-    for elem in arr:
-        str = elem.lower()
-        if str in dictionary:
-            dictionary[str] += 1
-        else:
-            dictionary[str] = 1
-
 def clean(text):
     text = text.replace('\\n', "")
     text = unicodedata.normalize('NFKD', text)
@@ -103,10 +95,7 @@ def get_keywords(url, dict):
         doc_list = response.json()['documents']
         for doc in doc_list:
             key_phrases += (doc['keyPhrases'])
-            for str in doc['keyPhrases']:
-                arr = str.split(' ')
-                wordCount(dict, arr)
-                
+
     # if pdf --- needs to be implemented
 
 
