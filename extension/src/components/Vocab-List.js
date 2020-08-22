@@ -1,6 +1,7 @@
 // ALL CONTENT EDITABLE THINGS HERE
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import axios from 'axios';
 import ContentEditable from 'react-contenteditable'
 import { Table, Button } from 'semantic-ui-react'
 import Collapsible from 'react-collapsible';
@@ -25,9 +26,9 @@ export default class VocabList extends Component {
 
       // im trying like this
       componentDidMount() {
+        console.log("here")
         axios.get('http://127.0.0.1:5000/vocab')
           .then(
-            
             console.log("received")
           )
       }

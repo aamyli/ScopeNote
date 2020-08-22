@@ -4,8 +4,11 @@ from pprint import pprint
 import diffbot
 from nltk import tokenize
 import unicodedata
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 # @app.route("/")
 # def hello():
@@ -79,10 +82,12 @@ def chunk(text):
 
 
 @app.route("/")
+@cross_origin()
 def hello():
     return "Hello, World!"
 
 @app.route("/vocab", methods=["GET"])
+@cross_origin()
 def get_keywords(url="http://www.topsprogram.ca/all-the-worlds-a-stage/"):
     subscription_key = "80ebba8cc9bf43fab4ef65f8891e8737"
     endpoint = "https://justin.cognitiveservices.azure.com/"
