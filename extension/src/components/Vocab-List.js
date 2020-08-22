@@ -7,7 +7,7 @@ import Collapsible from 'react-collapsible';
 import "./css/collapsible.css";
 
 
-export default class WordTest extends Component {
+export default class VocabList extends Component {
     initialState = {
         store: [
           { id: 1, word: 'hello', definition: 'this is the definition', note: 'extra notes' },

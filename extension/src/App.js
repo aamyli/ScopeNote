@@ -12,7 +12,8 @@ import Word from "./WordPage";
 import Home from "./components/Home";
 import Vocab from "./components/Vocab";
 import Summary from "./components/Summary";
-import WordTest from "./components/WordTest";
+import VocabList from "./components/Vocab-List";
+import SummaryList from "./components/Summary-List";
 
 export default function App() {
   return (
@@ -22,12 +23,13 @@ export default function App() {
           <Route path="/vocab">
               <Vocab></Vocab>
               {/* VV THIS FILE IS WHERE ALL THE CONTENT EDITABLE STUFF IS VV */}
-              <WordTest></WordTest>
+              <VocabList></VocabList>
           </Route>
 
 
           <Route path="/summary">
               <Summary></Summary>
+              <SummaryList></SummaryList>
           </Route>
 
           <Route path="/">
