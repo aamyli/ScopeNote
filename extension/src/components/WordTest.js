@@ -3,6 +3,9 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import ContentEditable from 'react-contenteditable'
 import { Table, Button } from 'semantic-ui-react'
+import Collapsible from 'react-collapsible';
+import "./css/collapsible.css";
+
 
 export default class WordTest extends Component {
     initialState = {
@@ -11,9 +14,9 @@ export default class WordTest extends Component {
           { id: 2, word: 'word2', definition: 'this is the definition!', note: 'xx' },
         ],
         row: {
-          word: '',
-          definition: '',
-          note: ''
+          word: 'Add Word',
+          definition: 'Add Definition',
+          note: 'Add Notes'
         },
       }
     
@@ -114,6 +117,7 @@ export default class WordTest extends Component {
           store: store.map((word, i) => (word[column] === row ? updatedRow : word)),
         })
       }
+
     
       render() {
         const {
@@ -127,8 +131,40 @@ export default class WordTest extends Component {
                 {store.map((row, i) => {
                   return (
                     <div key={row.id}>
+                        <Collapsible trigger={row.word} className="collapsible">
+                            <ContentEditable
+                            html={row.definition}
+                            data-column="definition"
+                            data-row={i}
+                            className="content-editable"
+                            //   onKeyPress={this.validateNumber}
+                            onPaste={this.pasteAsPlainText}
+                            onFocus={this.highlightAll}
+                            onChange={this.handleContentEditableUpdate}
+                            />
 
-                        <ContentEditable
+                            <ContentEditable
+                            html={row.note}
+                            data-column="note"
+                            data-row={i}
+                            className="content-editable"
+                            //   onKeyPress={this.validateNumber}
+                            onPaste={this.pasteAsPlainText}
+                            onFocus={this.highlightAll}
+                            onChange={this.handleContentEditableUpdate}
+                            />
+
+                            <Button
+                            onClick={() => {
+                                this.deleteRow(row.id)
+                            }}
+                            >
+                            Delete
+                            </Button>
+                        </Collapsible>
+
+
+                        {/* <ContentEditable
                           html={row.word}
                           data-column="word"
                           data-row={i}
@@ -137,41 +173,11 @@ export default class WordTest extends Component {
                           onPaste={this.pasteAsPlainText}
                           onFocus={this.highlightAll}
                           onChange={this.handleContentEditableUpdate}
-                        />
-
-                        <ContentEditable
-                          html={row.definition}
-                          data-column="definition"
-                          data-row={i}
-                          className="content-editable"
-                        //   onKeyPress={this.validateNumber}
-                          onPaste={this.pasteAsPlainText}
-                          onFocus={this.highlightAll}
-                          onChange={this.handleContentEditableUpdate}
-                        />
-
-                        <ContentEditable
-                          html={row.note}
-                          data-column="note"
-                          data-row={i}
-                          className="content-editable"
-                        //   onKeyPress={this.validateNumber}
-                          onPaste={this.pasteAsPlainText}
-                          onFocus={this.highlightAll}
-                          onChange={this.handleContentEditableUpdate}
-                        />
-
-                        <Button
-                          onClick={() => {
-                            this.deleteRow(row.id)
-                          }}
-                        >
-                          Delete
-                        </Button>
+                        /> */}
                     </div>
                   )
                 })}
-                <div>
+                <div className="addWord">
 
                     <ContentEditable
                       html={word}
