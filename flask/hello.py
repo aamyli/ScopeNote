@@ -77,7 +77,12 @@ def chunk(text):
 
     return final_result
 
+
 @app.route("/")
+def hello():
+    return "Hello, World!"
+
+@app.route("/vocab", methods=["GET"])
 def get_keywords(url="http://www.topsprogram.ca/all-the-worlds-a-stage/"):
     subscription_key = "80ebba8cc9bf43fab4ef65f8891e8737"
     endpoint = "https://justin.cognitiveservices.azure.com/"
@@ -97,3 +102,4 @@ def get_keywords(url="http://www.topsprogram.ca/all-the-worlds-a-stage/"):
             key_phrases += (doc['keyPhrases'])
 
     print(key_phrases)
+    return "hello"
