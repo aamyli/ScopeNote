@@ -97,3 +97,5 @@ def get_keywords(url="http://www.topsprogram.ca/all-the-worlds-a-stage/"):
             key_phrases += (doc['keyPhrases'])
 
     print(key_phrases)
+
+    return "Hello"

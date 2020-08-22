@@ -73,6 +73,7 @@ def get_keywords(url):
     subscription_key = "80ebba8cc9bf43fab4ef65f8891e8737"
     endpoint = "https://justin.cognitiveservices.azure.com/"
     keyphrase_url = endpoint + "/text/analytics/v3.0/keyphrases"
+    headers = {"Ocp-Apim-Subscription-Key": subscription_key}
 
     # if url
     json_result = diffbot.article(url, token='d656578220cbf622d16575aba331d47d')
@@ -81,14 +82,20 @@ def get_keywords(url):
     documents = chunk(cleaned_text)
 
     key_phrases = []
+    count = 1
     for batch in documents:
-        headers = {"Ocp-Apim-Subscription-Key": subscription_key}
+        print(count)
+        count += 1
+
+        # empty lists should not be used
+        if not batch['documents']:
+            break
+
         response = requests.post(keyphrase_url, headers=headers, json=batch)
+
         doc_list = response.json()['documents']
         for doc in doc_list:
             key_phrases += (doc['keyPhrases'])
-
-    pprint(key_phrases)
 
     # if pdf --- needs to be implemented
 
@@ -96,4 +103,5 @@ def get_keywords(url):
 # urlNoNames = 'http://www.topsprogram.ca/all-the-worlds-a-stage/'
 # urlTransfomer = 'https://jalammar.github.io/illustrated-transformer/'
 #
-get_keywords('https://www.sciencedirect.com/science/article/pii/S0049384820301407')
+# get_keywords('https://www.sciencedirect.com/science/article/pii/S0049384820301407')
+get_keywords('https://en.wikipedia.org/wiki/John_Oliver')
