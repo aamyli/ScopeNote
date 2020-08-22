@@ -25,7 +25,9 @@ export default function App() {
               </Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
+                <Button variant="contained" color="primary" onClick={Test()}>
+                  About
+                </Button>
             </li>
             <li>
               <Link to="/users">Users</Link>
@@ -63,6 +65,11 @@ function Users() {
   return <h2>Users</h2>;
 }
 
+function Test() {
+  console.log("TEST")
+  console.log(window.location.href);
+  console.log("Hello");
+}
 // var currentURL;
 
 // chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT}, 
