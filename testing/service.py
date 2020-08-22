@@ -98,14 +98,13 @@ def get_keywords(url, dict, bank):
     key_phrases = []
     count = 1
     for batch in documents:
-        print(count)
+        #print(count)
         count += 1
 
         headers = {"Ocp-Apim-Subscription-Key": subscription_key}
         if not batch['documents']:
             break
         response = requests.post(keyphrase_url, headers=headers, json=batch)
-        print(response.json())
         doc_list = response.json()['documents']
         for doc in doc_list:
             key_phrases += (doc['keyPhrases'])
@@ -114,7 +113,7 @@ def get_keywords(url, dict, bank):
                 arr = key.split(' ')
                 wordCount(dict, arr)
 
-    print(key_phrases)
+    #print(key_phrases)
     #print(dict)
 
     # if pdf --- needs to be implemented
@@ -123,11 +122,18 @@ def sortOrder(dict):
     sorted_x = sorted(dict.items(), key=lambda kv: kv[1], reverse=True)
     return sorted_x
 
+def bestKeys(list, keys, words = 15):
 
-def bestKeys(list, keys):
-    x = 0
+    arr = []
+    for i in range (words):
+        for x in range (len(keys)):
+            if list[i][0] in keys[x][0] and len(keys[x][0].split(' '))<4:
+                arr.append(keys[x][0])
+                keys.pop(x)
+                break
+    return arr
 
-# url = 'https://plato.stanford.edu/entries/medicine/'
+#url = 'https://plato.stanford.edu/entries/medicine/'
 # urlNoNames = 'http://www.topsprogram.ca/all-the-worlds-a-stage/'
 # urlTransfomer = 'https://jalammar.github.io/illustrated-transformer/'
 #
@@ -136,11 +142,10 @@ url = 'https://en.wikipedia.org/wiki/John_Oliver'
 dict = {}
 bank = {}
 get_keywords(url, dict, bank)
-sortedA = sortOrder(dict)
+sortedWords = sortOrder(dict)
 sortedBank = sortOrder(bank)
-print(dict)
-print(sortedA)
-print(bank)
+bestK = bestKeys(sortedWords, sortedBank)
+print(bestK)
 
 
 #get_keywords(url)
