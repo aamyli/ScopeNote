@@ -84,7 +84,6 @@ text = json_result['objects'][0]['text']
 
 documents = chunk(clean(text))
 
-pprint(documents)
 headers = {"Ocp-Apim-Subscription-Key": subscription_key}
 response = requests.post(keyphrase_url, headers=headers, json=documents[0])
 key_phrases = response.json()
