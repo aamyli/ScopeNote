@@ -15,7 +15,7 @@ cors = CORS(app)
 #     return "Hello, World!"
 
 @app.route("/")
-@cross_origin
+@cross_origin()
 def dummy():
 
     return "Hello"
@@ -23,9 +23,8 @@ def dummy():
 # normal link
 @app.route("/vocab", methods=["GET"])
 @cross_origin()
-def link(url):
+def link(url="http://www.topsprogram.ca/all-the-worlds-a-stage/"):
     get_keywords(url)
-
     return 'hello'
 
 # pdf
