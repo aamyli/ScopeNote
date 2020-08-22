@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 import Button from '@material-ui/core/Button';
 import {
   BrowserRouter as Router,
@@ -9,8 +7,11 @@ import {
   Link,
   useHistory
 } from "react-router-dom";
+import "./css/vocab.css";
+import Word from "./word";
 
-export default class Word extends Component {
+
+export default function Summary() {
     //let history = useHistory();
     // goHome() { 
     //   useHistory().push("/");
@@ -26,12 +27,22 @@ export default class Word extends Component {
     //   );
     // }
   
-    render() {
+
         //this.tabLink();
         return ( 
         <div>
-            <h1>ABOUT PAGE TEST</h1>
+            <div className="header">
+                <Link to="/">    
+                    <img src={require("./assets/arrow.png")} alt="back" className="back-button"/>
+                </Link>
+                <h1>Summary</h1>
+            </div>
+            <div className="phrases">
+                <ul>
+                    <li>this is a point</li>
+                </ul>
+            </div>
+            
         </div>
         )
-    }
 }

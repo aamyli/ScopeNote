@@ -9,41 +9,37 @@ import {
   Link
 } from "react-router-dom";
 import Word from "./WordPage";
+import Home from "./components/Home";
+import Vocab from "./components/Vocab";
+import Summary from "./components/Summary";
 
 export default function App() {
   return (
     <Router>
-      <div>
-
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
+      <div className="ext">
         <Switch>
-          <Route path="/about">
-              <Link to="/">    
-                <Button variant="contained" color="primary">
-                  Home
-                </Button>
-              </Link>
-              <h1>HELLO THIS IS THE ABOUT PAGE</h1>
-              <Word></Word>
+          <Route path="/vocab">
+              <Vocab></Vocab>
           </Route>
+
+
+          <Route path="/summary">
+              <Summary></Summary>
+          </Route>
+
           <Route path="/">
-              <Link to="/about">  
-                <Button variant="contained" color="primary">
-                  About
-                </Button>
-              </Link>
-              <h2>THE HOME PAGE</h2>
+              <Home></Home>
           </Route>
+
         </Switch>
       </div>
     </Router>
   );
 }
 
-function Home() {
-  return <h2>Home</h2>;
-}
+// function Home() {
+//   return <h2>Home</h2>;
+// }
 
 function tabLink() {
   /* eslint-disable no-undef */

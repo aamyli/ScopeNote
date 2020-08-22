@@ -1,0 +1,16 @@
+.title {
+    text-align: center;
+    padding-top: 200px;
+}
+
+.intro {
+    text-align: center;
+    padding-left: 70px;
+    padding-right: 70px;
+    font-size: 20px;
+}
+
+.options {
+    text-align: center;
+    padding: 10px;
+}
