@@ -86,8 +86,8 @@ def bankKeys(dict, key):
         dict[str] = 1
 
 def get_keywords(url, dict, bank):
-    subscription_key = "80ebba8cc9bf43fab4ef65f8891e8737"
-    endpoint = "https://justin.cognitiveservices.azure.com/"
+    subscription_key = "cdc7974745364f92b1f5e0b9fcd41cef"
+    endpoint = "https://jimwu.cognitiveservices.azure.com/"
     keyphrase_url = endpoint + "/text/analytics/v3.0/keyphrases"
 
     # if url
@@ -96,9 +96,16 @@ def get_keywords(url, dict, bank):
     documents = chunk(clean(text))
 
     key_phrases = []
+    count = 1
     for batch in documents:
+        print(count)
+        count += 1
+
         headers = {"Ocp-Apim-Subscription-Key": subscription_key}
+        if not batch['documents']:
+            break
         response = requests.post(keyphrase_url, headers=headers, json=batch)
+        print(response.json())
         doc_list = response.json()['documents']
         for doc in doc_list:
             key_phrases += (doc['keyPhrases'])
@@ -120,20 +127,22 @@ def sortOrder(dict):
 def bestKeys(list, keys):
     x = 0
 
-url = 'https://plato.stanford.edu/entries/medicine/'
+# url = 'https://plato.stanford.edu/entries/medicine/'
 # urlNoNames = 'http://www.topsprogram.ca/all-the-worlds-a-stage/'
-urlTransfomer = 'https://jalammar.github.io/illustrated-transformer/'
+# urlTransfomer = 'https://jalammar.github.io/illustrated-transformer/'
 #
+url = 'https://en.wikipedia.org/wiki/John_Oliver'
+
 dict = {}
 bank = {}
 get_keywords(url, dict, bank)
-sorted = sortOrder(dict)
-#sortedBank = sortOrder(bank)
+sortedA = sortOrder(dict)
+sortedBank = sortOrder(bank)
 print(dict)
-print(sorted)
+print(sortedA)
 print(bank)
 
-#url = 'https://en.wikipedia.org/wiki/John_Oliver'
+
 #get_keywords(url)
 
 

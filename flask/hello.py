@@ -1,9 +1,5 @@
 from flask import Flask
 import requests
-from pprint import pprint
-import diffbot
-from nltk import tokenize
-import unicodedata
 from flask_cors import CORS, cross_origin
 from services import get_keywords
 

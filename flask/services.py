@@ -72,8 +72,8 @@ def chunk(text):
 
 
 def get_keywords(url):
-    subscription_key = "80ebba8cc9bf43fab4ef65f8891e8737"
-    endpoint = "https://justin.cognitiveservices.azure.com/"
+    subscription_key = "cdc7974745364f92b1f5e0b9fcd41cef"
+    endpoint = "https://jimwu.cognitiveservices.azure.com/"
     keyphrase_url = endpoint + "/text/analytics/v3.0/keyphrases"
 
     # if url
