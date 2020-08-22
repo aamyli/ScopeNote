@@ -1,4 +1,5 @@
 import requests
+import json
 
 word = 'hello'
 url = "https://wordsapiv1.p.rapidapi.com/words/" + word + "/definitions"
@@ -9,5 +10,6 @@ headers = {
     }
 
 response = requests.request("GET", url, headers=headers)
+final = json.loads(response.text)
 
-print(response.text)
+print(final['definitions'][0]['definition'])
