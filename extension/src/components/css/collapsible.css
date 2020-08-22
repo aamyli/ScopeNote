@@ -1,0 +1,14 @@
+.Collapsible {
+    background-color: gray;
+    margin: 10px;
+}
+
+.Collapsible__contentInner {
+    background-color: pink
+}
+
+.addWord {
+    margin: 10px;
+    background-color: yellow;
+    color: rgb(168, 168, 168);
+}
