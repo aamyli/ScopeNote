@@ -4,6 +4,14 @@ import diffbot
 from nltk import tokenize
 import unicodedata
 
+def wordCount(dictionary, arr):
+    for elem in arr:
+        str = elem.lower()
+        if str in dictionary:
+            dictionary[str] += 1
+        else:
+            dictionary[str] = 1
+
 def clean(text):
     text = text.replace('\\n', "")
     text = unicodedata.normalize('NFKD', text)
@@ -69,7 +77,7 @@ def chunk(text):
 
     return final_result
 
-def get_keywords(url):
+def get_keywords(url, dict):
     subscription_key = "80ebba8cc9bf43fab4ef65f8891e8737"
     endpoint = "https://justin.cognitiveservices.azure.com/"
     keyphrase_url = endpoint + "/text/analytics/v3.0/keyphrases"
@@ -78,8 +86,7 @@ def get_keywords(url):
     # if url
     json_result = diffbot.article(url, token='d656578220cbf622d16575aba331d47d')
     text = json_result['objects'][0]['text']
-    cleaned_text = clean(text)
-    documents = chunk(cleaned_text)
+    documents = chunk(clean(text))
 
     key_phrases = []
     count = 1
@@ -96,12 +103,29 @@ def get_keywords(url):
         doc_list = response.json()['documents']
         for doc in doc_list:
             key_phrases += (doc['keyPhrases'])
+            for str in doc['keyPhrases']:
+                arr = str.split(' ')
+                wordCount(dict, arr)
 
+<<<<<<< HEAD
+=======
+    print(key_phrases)
+    #print(dict)
+
+>>>>>>> c92f1494a83da717d5295bf7d4dcb72846f40f3d
     # if pdf --- needs to be implemented
 
-# url = 'https://www.cnn.com/2020/08/21/politics/peter-rafael-dzibinski-debbins-green-beret-russia/index.html'
+def sortDict(dict):
+    sorted_x = sorted(dict.items(), key=lambda kv: kv[1], reverse=True)
+    return sorted_x
+
+def bestKeys(list, keys):
+
+
+url = 'https://plato.stanford.edu/entries/medicine/'
 # urlNoNames = 'http://www.topsprogram.ca/all-the-worlds-a-stage/'
-# urlTransfomer = 'https://jalammar.github.io/illustrated-transformer/'
+urlTransfomer = 'https://jalammar.github.io/illustrated-transformer/'
 #
 # get_keywords('https://www.sciencedirect.com/science/article/pii/S0049384820301407')
 get_keywords('https://en.wikipedia.org/wiki/John_Oliver')
+
