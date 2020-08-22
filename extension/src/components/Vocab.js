@@ -42,9 +42,9 @@ export default function Vocab() {
                 </Link>
                 <h1>Key Words</h1>
             </div>
-            <div className="words">
+            {/* <div className="words">
                 <Word word="keyword" definition="this is the definition of the keyword"></Word>
-            </div>
+            </div> */}
             
         </div>
         )
