@@ -25,9 +25,11 @@ export default function App() {
               </Link>
             </li>
             <li>
-                <Button variant="contained" color="primary" onClick={Test()}>
+              <Link to="/about">  
+                <Button variant="contained" color="primary">
                   About
                 </Button>
+              </Link>
             </li>
             <li>
               <Link to="/users">Users</Link>
@@ -58,6 +60,9 @@ function Home() {
 }
 
 function About() {
+  console.log("about");
+  console.log(window.location.href);
+  tabLink();
   return <h2>About</h2>;
 }
 
@@ -67,8 +72,8 @@ function Users() {
 
 function Test() {
   console.log("TEST")
-  console.log(window.location.href);
-  console.log("Hello");
+  // console.log(window.location.href);
+  // console.log("Hello");
 }
 // var currentURL;
 
@@ -80,3 +85,14 @@ function Test() {
 // function getCurrentURL(tab){
 // 	currentURL = tab;
 // }
+
+function tabLink() {
+  /* eslint-disable no-undef */
+  chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT},
+   function(tabs){
+      alert(tabs[0].url);
+      var urlTab = tabs[0].url;
+      console.log(urlTab);
+   }
+);
+}
