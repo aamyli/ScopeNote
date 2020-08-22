@@ -128,6 +128,7 @@ dict = {}
 bank = {}
 get_keywords(url, dict, bank)
 sorted = sortOrder(dict)
+#sortedBank = sortOrder(bank)
 print(dict)
 print(sorted)
 print(bank)
