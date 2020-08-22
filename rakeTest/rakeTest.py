@@ -9,7 +9,7 @@ f.close()
 
 stop = words.split('\n')
 
-r = Rake(ranking_metric=Metric.WORD_FREQUENCY)
+r = Rake(stopwords=stop, ranking_metric=Metric.WORD_DEGREE, min_length=1, max_length=50)
 
 url = 'https://www.cnn.com/2020/08/21/politics/peter-rafael-dzibinski-debbins-green-beret-russia/index.html'
 urlNoNames = 'https://www.britannica.com/science/influenza'
