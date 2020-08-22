@@ -1,7 +1,9 @@
 from flask import Flask
+from flask_cors import CORS
 from services import get_keywords
 
 app = Flask(__name__)
+cors = CORS(app)
 # Flask.
 # @app.route("/")
 # def hello():
