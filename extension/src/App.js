@@ -14,40 +14,26 @@ export default function App() {
   return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">    
-                {/* <Button variant="contained" color="primary" onClick={getCurrentURL()}> */}
-                <Button variant="contained" color="primary">
-                  Home
-                </Button>
-              </Link>
-            </li>
-            <li>
-              <Link to="/about">  
-                <Button variant="contained" color="primary">
-                  About
-                </Button>
-              </Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul>
-        </nav>
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/users">
-            <Users />
+              <Link to="/">    
+                <Button variant="contained" color="primary">
+                  Home
+                </Button>
+              </Link>
+              <h1>HELLO THIS IS THE ABOUT PAGE</h1>
+              <Word></Word>
           </Route>
           <Route path="/">
-            <Home />
+              <Link to="/about">  
+                <Button variant="contained" color="primary">
+                  About
+                </Button>
+              </Link>
+              <h2>THE HOME PAGE</h2>
           </Route>
         </Switch>
       </div>
@@ -59,19 +45,30 @@ function Home() {
   return <h2>Home</h2>;
 }
 
-function About() {
-  console.log("about");
-  console.log(window.location.href);
-  tabLink();
-  return <h2>About</h2>;
+function tabLink() {
+  /* eslint-disable no-undef */
+  chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT},
+   function(tabs){
+      alert(tabs[0].url);
+      var urlTab = tabs[0].url;
+      console.log(urlTab);
+   }
+);
 }
+// function About() {
+//   <Word></Word>
+//   console.log("about");
+//   console.log(window.location.href);
+//   tabLink();
+//   return <h2>About</h2>;
+// }
 
 function Users() {
   return <h2>Users</h2>;
 }
 
 function Test() {
-  console.log("TEST")
+  console.log("TEST");
   // console.log(window.location.href);
   // console.log("Hello");
 }
@@ -86,13 +83,4 @@ function Test() {
 // 	currentURL = tab;
 // }
 
-function tabLink() {
-  /* eslint-disable no-undef */
-  chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT},
-   function(tabs){
-      alert(tabs[0].url);
-      var urlTab = tabs[0].url;
-      console.log(urlTab);
-   }
-);
-}
+
