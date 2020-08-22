@@ -10,7 +10,7 @@ keyphrase_url = endpoint + "/text/analytics/v3.0/keyphrases"
 
 url = 'https://www.cnn.com/2020/08/21/politics/peter-rafael-dzibinski-debbins-green-beret-russia/index.html'
 urlNoNames = 'http://www.topsprogram.ca/all-the-worlds-a-stage/'
-json_result = diffbot.article(urlNoNames, token='d656578220cbf622d16575aba331d47d')
+json_result = diffbot.article(url, token='d656578220cbf622d16575aba331d47d')
 
 documents = {"documents": [
     {"id": "1", "language": "en",
@@ -31,6 +31,8 @@ documents = {"documents": [
     {"id": "3", "language": "en",
         "text": "The Grand Hotel is a new hotel in the center of Seattle. It earned 5 stars in my review, and has the classiest decor I've ever seen."}
 ]}
+
+print(words)
 
 headers = {"Ocp-Apim-Subscription-Key": subscription_key}
 response = requests.post(keyphrase_url, headers=headers, json=documents)
