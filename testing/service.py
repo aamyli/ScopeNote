@@ -77,7 +77,8 @@ def get_keywords(url):
     # if url
     json_result = diffbot.article(url, token='d656578220cbf622d16575aba331d47d')
     text = json_result['objects'][0]['text']
-    documents = chunk(clean(text))
+    cleaned_text = clean(text)
+    documents = chunk(cleaned_text)
 
     key_phrases = []
     for batch in documents:
@@ -87,17 +88,12 @@ def get_keywords(url):
         for doc in doc_list:
             key_phrases += (doc['keyPhrases'])
 
-    print(key_phrases)
+    pprint(key_phrases)
 
     # if pdf --- needs to be implemented
-
-
 
 # url = 'https://www.cnn.com/2020/08/21/politics/peter-rafael-dzibinski-debbins-green-beret-russia/index.html'
 # urlNoNames = 'http://www.topsprogram.ca/all-the-worlds-a-stage/'
 # urlTransfomer = 'https://jalammar.github.io/illustrated-transformer/'
 #
-# get_keywords(urlTransfomer)
-
-
-
+get_keywords('https://www.sciencedirect.com/science/article/pii/S0049384820301407')
