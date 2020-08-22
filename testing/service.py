@@ -106,20 +106,8 @@ def get_keywords(url, dict):
             for str in doc['keyPhrases']:
                 arr = str.split(' ')
                 wordCount(dict, arr)
-
-<<<<<<< HEAD
-=======
-    print(key_phrases)
-    #print(dict)
-
->>>>>>> c92f1494a83da717d5295bf7d4dcb72846f40f3d
+                
     # if pdf --- needs to be implemented
-
-def sortDict(dict):
-    sorted_x = sorted(dict.items(), key=lambda kv: kv[1], reverse=True)
-    return sorted_x
-
-def bestKeys(list, keys):
 
 
 url = 'https://plato.stanford.edu/entries/medicine/'
