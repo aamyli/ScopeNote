@@ -38,7 +38,7 @@ export default function Home() {
     
     const genNotes = () => {
       // let link = 'http://www.topsprogram.ca/all-the-worlds-a-stage/'
-      let link = 'https://medium.com/@nipunadilhara/passing-data-between-different-components-using-react-c8e27319ee69'
+      let link = 'https://www.bbc.com/future/article/20200819-why-plastic-waste-is-an-ideal-building-material'
       console.log(link)
       axios.get('http://127.0.0.1:5000/link/' + link)
       //   .then(res => {
