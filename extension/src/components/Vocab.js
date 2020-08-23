@@ -10,12 +10,6 @@ import {
 import "./css/vocab.css";
 import Word from "./word";
 
-
-
-
-
-
-
 export default function Vocab() {
     //let history = useHistory();
     // goHome() { 
@@ -32,7 +26,6 @@ export default function Vocab() {
     //   );
     // }
   
-
         //this.tabLink();
         return ( 
         <div className="Vocab">
