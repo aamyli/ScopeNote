@@ -1,5 +1,7 @@
+/* global chrome */
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
+import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter as Router,
@@ -16,33 +18,29 @@ export default function Home() {
     //   useHistory().push("/");
     // };
     function tabLink() {
+      let urlTab
         /* eslint-disable no-undef */
-        chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT},
-         function(tabs){
-            alert(tabs[0].url);
-            var urlTab = tabs[0].url;
-            console.log(urlTab);
-         }
-      );
-    }
+        chrome.tabs.getCurrent(tab => urlTab = tab)
+        /* eslint-enable no-undef */
+        return urlTab
+      //   chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT},
+      //    function(tabs){
+      //       alert(tabs[0].url);
+      //       urlTab = tabs[0].url;
+      //       console.log(urlTab);
+      //    }
+      // );
+    } 
+    
   
     let vocab;
     let summary;
-
-    const findNotes = () => {
-      // axios.get('localhost:5000/db')
-      //   .then(res => {
-      //     console.log('found existing notes')
-      //     data = res.data
-      //     vocab = data['vocab']
-      //     summary = data['summary']
-      //   })
-      console.log('findnotes')
-    }
     
     const genNotes = () => {
-      let link = 'http://www.topsprogram.ca/all-the-worlds-a-stage/'
-      // axios.get('http://127.0.0.1:5000/link/' + link)
+      // let link = 'http://www.topsprogram.ca/all-the-worlds-a-stage/'
+      let link = 'https://medium.com/@nipunadilhara/passing-data-between-different-components-using-react-c8e27319ee69'
+      console.log(link)
+      axios.get('http://127.0.0.1:5000/link/' + link)
       //   .then(res => {
       //     console.log("received")
       //     console.log(res.data['vocab'])
@@ -59,7 +57,7 @@ export default function Home() {
             </div>
             <h4 className="intro">Faster. Better. Smarter. </h4>
             <div className="options">
-              <Link to="/vocab" onClick={findNotes}>  
+              <Link to="/vocab">  
                 <Button variant="outline-warning">
                   Generate Key Words
                 </Button>

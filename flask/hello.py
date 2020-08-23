@@ -43,7 +43,14 @@ parser.add_argument('store')
 
 class Link(Resource):
     def get(self, url):
-        return get_keylist(url)
+        key = get_keylist(url)
+        for i in range(len(key['vocab'])):
+            key['vocab'][i]['id'] = i
+        for i in range(len(key['summary'])):
+            key['summary'][i] = {'id': i, 'point':  key['summary'][i]}
+        state['vocab']['store'] = key['vocab']
+        state['summary']['store'] = key['summary']
+        return key
 
 class VocabList(Resource):
     def get(self):

@@ -286,4 +286,4 @@ def get_keylist(url):
 
     pprint(json_objs) # debug
 
-    return json.dumps(json_objs)
+    return json_objs
