@@ -22,7 +22,7 @@ button {
     height: 20vh;
     /* border-radius: 25px; */
     /* padding: 20px 0 20px 0; */
-    margin: 15px 0 15px 0;
+    margin: 15px 0 10px 0;
     /* text-align: center; */
     
 }
@@ -63,7 +63,7 @@ button {
 .summary {
     font-size: 1.5em;
     border: solid black;
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
 li {
@@ -73,7 +73,7 @@ li {
 
 .title {
     margin-right: 70%;
-    margin-top: 10px;
+    margin-top: 8px;
     font-size: 2.2em;
     text-align: center;
 }
