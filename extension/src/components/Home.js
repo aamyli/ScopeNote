@@ -28,22 +28,33 @@ export default function Home() {
   
         //this.tabLink();
         return ( 
-        <div>
-            <h1 className="title">TITLE OF APP</h1>
-            <h4 className="intro">Here is an introduction paragraph thingy we can use to introduce our extension.</h4>
+        <div className="home">
+            <div className="title">
+              <img src={require("./assets/ScopeNote.png")} alt="SCOPE NOTE" className="scopenote"/>
+            </div>
+            <h4 className="intro">Faster. Better. Smarter. </h4>
             <div className="options">
               <Link to="/vocab">  
-                <Button variant="outline-primary">
+                <Button variant="outline-warning">
                   Generate Key Words
                 </Button>
               </Link>
             </div>
             <div className="options">
               <Link to="/summary">  
-                <Button variant="outline-info">
+                <Button variant="outline-warning">
                   Generate Article Summary
                 </Button>
               </Link>
+            </div>
+            <div className="owl-div">
+              <img src={require("./assets/owl.png")} alt="Scotty" className="scotty"/>
+              <p className="scotty-talk">
+                Hi! I'm Scotty, your favourite study buddy! 
+                <br />
+                <br />
+                Click above to get started!
+              </p>
             </div>
         </div>
         )
