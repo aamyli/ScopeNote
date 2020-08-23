@@ -1,4 +1,6 @@
 import json
+
+import fitz
 import requests
 from pprint import pprint
 import diffbot
@@ -113,7 +115,7 @@ def bankKeys(dict, key):
         dict[str] = 1
 
 
-# generate key words and return the text that was already found for sumamry
+# generate key words and return the text that was already found for summary
 def gen_keywords(url, dict, bank):
 
     # set up stuff
@@ -150,13 +152,59 @@ def gen_keywords(url, dict, bank):
     return cleaned_text
     # if pdf --- needs to be implemented
 
+def gen_keywords_pdf(url, dict, bank):
+    # set up stuff
+    subscription_key = "cdc7974745364f92b1f5e0b9fcd41cef"
+    endpoint = "https://jimwu.cognitiveservices.azure.com/"
+    keyphrase_url = endpoint + "/text/analytics/v3.0/keyphrases"
+    headers = {"Ocp-Apim-Subscription-Key": subscription_key}
+
+    r = requests.get(url, stream=True)
+    with open('file.pdf', 'wb') as fd:
+        for c in r.iter_content(5000):
+            fd.write(c)
+
+    doc = fitz.open('file.pdf')
+    pages = len(doc)
+    text = ""
+    for page in doc:
+        t = page.getText()
+        # print(text)
+        text += t
+
+    cleaned_text = clean(text)
+    documents = chunk(cleaned_text)
+
+    key_phrases = []
+    # go through the different ones
+    for batch in documents:
+
+        # catch case where the batch is empty
+        if not batch['documents']:
+            break
+
+        # make request to Azure API
+        response = requests.post(keyphrase_url, headers=headers, json=batch)
+        # use response
+        doc_list = response.json()['documents']
+        for doc in doc_list:
+            key_phrases += (doc['keyPhrases'])
+            for key in doc['keyPhrases']:
+                bankKeys(bank, key)
+                arr = key.split(' ')
+                wordCount(dict, arr)
+
+    return cleaned_text
 
 def get_keywords(url, words = 15):
 
     # set up variables to use
     dict = {}
     bank = {}
-    text = gen_keywords(url, dict, bank)
+    if url[-4:] == '.pdf':
+        text = gen_keywords_pdf(url, dict, bank)
+    else:
+        text = gen_keywords(url, dict, bank)
     sortedWords = sortOrder(dict)
     sortedBank = sortOrder(bank)
     bestK = bestKeys(sortedWords, sortedBank, words)
@@ -178,14 +226,17 @@ def get_definition(word):
         'x-rapidapi-key': "26c6528ad6mshea36b2df94b4ab9p1a8fe5jsn750c57e0ead4"
     }
     response = requests.request("GET", url, headers=headers)
-
+    status = response.status_code
     # success!
-    if response.status_code == 200:
+    if status == 200:
         final = json.loads(response.text)
         # only take first one
-        word_def =  final['definitions'][0]['definition']
+        if not final['definitions']:
+            status = 0
+        else:
+            word_def = final['definitions'][0]['definition']
 
-    else:
+    if status != 200:
         wps = wikipedia_string(word)
         word_def = 'Word is not found. Try https://en.wikipedia.org/wiki/' + wps + '. Add your own definition!'
 
@@ -233,6 +284,6 @@ def get_keylist(url):
 
     json_objs = {'vocab': vocab, 'summary': summary}
 
-    print(json_objs) # debug
+    pprint(json_objs) # debug
 
     return json.dumps(json_objs)

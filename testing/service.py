@@ -155,6 +155,7 @@ def get_list(url, words = 15):
 
 
 
+
 #url = 'https://plato.stanford.edu/entries/medicine/'
 # urlNoNames = 'http://www.topsprogram.ca/all-the-worlds-a-stage/'
 # urlTransfomer = 'https://jalammar.github.io/illustrated-transformer/'

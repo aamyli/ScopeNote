@@ -1,14 +1,22 @@
 import fitz
 import sys
+import urllib3
+import requests
 
-doc = fitz.open('http://www.ecie.com.ar/images/paginas/COVID-19/4MMWR-Severe_Outcomes_Among_Patients_with_Coronavirus_Disease_2019_COVID-19-United_States_February_12-March_16_2020.pdf')
+url = r'https://arxiv.org/pdf/1508.06576.pdf'
+r = requests.get(url, stream=True)
+with open('file.pdf', 'wb') as fd:
+    for chunk in r.iter_content(5000):
+        fd.write(chunk)
+
+doc = fitz.open('demo.pdf')
 pages = len(doc)
 
 fout = open('demo_out.txt', 'w', encoding='utf-8')
 
 for page in doc:
     text = page.getText()
-    # print(text)
+    print(text)
     fout.write(text)
 
 fout.close()

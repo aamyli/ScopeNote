@@ -1,7 +1,7 @@
 import requests
 import json
 
-word = 'neural network'
+word = 'app'
 url = "https://wordsapiv1.p.rapidapi.com/words/" + word + "/definitions"
 
 headers = {
