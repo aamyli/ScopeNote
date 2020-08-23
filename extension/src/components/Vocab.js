@@ -35,7 +35,7 @@ export default function Vocab() {
 
         //this.tabLink();
         return ( 
-        <div>
+        <div className="Vocab">
             <div className="header">
                 <Link to="/">    
                     <img src={require("./assets/arrow.png")} alt="back" className="back-button"/>
