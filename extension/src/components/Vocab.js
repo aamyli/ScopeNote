@@ -26,7 +26,6 @@ export default function Vocab() {
     //   );
     // }
   
-
         //this.tabLink();
         return ( 
         <div className="Vocab">

@@ -7,7 +7,7 @@ import {
   Link,
   useHistory
 } from "react-router-dom";
-import "./css/vocab.css";
+import "./css/summary.css";
 import Word from "./word";
 
 
@@ -30,7 +30,7 @@ export default function Summary() {
 
         //this.tabLink();
         return ( 
-        <div>
+        <div className="Summary">
             <div className="header">
                 <Link to="/">    
                     <img src={require("./assets/arrow.png")} alt="back" className="back-button"/>
