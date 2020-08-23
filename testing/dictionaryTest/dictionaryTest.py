@@ -1,7 +1,7 @@
 import requests
 import json
 
-word = 'user'
+word = 'neural network'
 url = "https://wordsapiv1.p.rapidapi.com/words/" + word + "/definitions"
 
 headers = {
@@ -10,6 +10,8 @@ headers = {
     }
 
 response = requests.request("GET", url, headers=headers)
+print(response.status_code)
 final = json.loads(response.text)
+print(final)
 
 print(final['definitions'][0]['definition'])

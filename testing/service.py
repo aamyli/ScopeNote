@@ -4,6 +4,7 @@ import diffbot
 from nltk import tokenize
 import unicodedata
 
+
 def wordCount(dictionary, arr):
     for elem in arr:
         str = elem.lower()
@@ -12,11 +13,13 @@ def wordCount(dictionary, arr):
         else:
             dictionary[str] = 1
 
+
 def clean(text):
     text = text.replace('\\n', "")
     text = unicodedata.normalize('NFKD', text)
 
     return text
+
 
 def chunk(text):
 
@@ -77,6 +80,23 @@ def chunk(text):
 
     return final_result
 
+
+def sortOrder(dict):
+    sorted_x = sorted(dict.items(), key=lambda kv: kv[1], reverse=True)
+    return sorted_x
+
+def bestKeys(list, keys, words = 15):
+
+    arr = []
+    for i in range (words):
+        for x in range (len(keys)):
+            if list[i][0] in keys[x][0] and len(keys[x][0].split(' '))<4:
+                arr.append(keys[x][0])
+                keys.pop(x)
+                break
+    return arr
+
+
 def bankKeys(dict, key):
 
     str = key.lower()
@@ -84,6 +104,7 @@ def bankKeys(dict, key):
         dict[str] += 1
     else:
         dict[str] = 1
+
 
 def get_keywords(url, dict, bank):
     subscription_key = "cdc7974745364f92b1f5e0b9fcd41cef"
@@ -118,35 +139,27 @@ def get_keywords(url, dict, bank):
 
     # if pdf --- needs to be implemented
 
-def sortOrder(dict):
-    sorted_x = sorted(dict.items(), key=lambda kv: kv[1], reverse=True)
-    return sorted_x
 
-def bestKeys(list, keys, words = 15):
+def get_list(url, words = 15):
 
-    arr = []
-    for i in range (words):
-        for x in range (len(keys)):
-            if list[i][0] in keys[x][0] and len(keys[x][0].split(' '))<4:
-                arr.append(keys[x][0])
-                keys.pop(x)
-                break
-    return arr
+    dict = {}
+    bank = {}
+    get_keywords(url, dict, bank)
+    sortedWords = sortOrder(dict)
+    sortedBank = sortOrder(bank)
+    bestK = bestKeys(sortedWords, sortedBank, words)
+    print(bestK)
+
+    return bestK
+
+
+
 
 #url = 'https://plato.stanford.edu/entries/medicine/'
 # urlNoNames = 'http://www.topsprogram.ca/all-the-worlds-a-stage/'
 # urlTransfomer = 'https://jalammar.github.io/illustrated-transformer/'
 #
 url = 'https://en.wikipedia.org/wiki/John_Oliver'
-
-dict = {}
-bank = {}
-get_keywords(url, dict, bank)
-sortedWords = sortOrder(dict)
-sortedBank = sortOrder(bank)
-bestK = bestKeys(sortedWords, sortedBank)
-print(bestK)
-
 
 #get_keywords(url)
 

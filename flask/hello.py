@@ -1,7 +1,7 @@
 from flask import Flask
 import requests
 from flask_cors import CORS, cross_origin
-from services import get_keywords
+from services import get_keylist
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -17,10 +17,11 @@ def dummy():
     return "Hello"
 
 # normal link
-@app.route("/vocab", methods=["GET"])
+@app.route("/link/<path:url>")
 @cross_origin()
-def link(url="http://www.topsprogram.ca/all-the-worlds-a-stage/"):
-    get_keywords(url)
+def link(url):
+    print('aloha')
+    get_keylist(url)
     return 'hello'
 
 # pdf
