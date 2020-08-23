@@ -1,0 +1,46 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+button {
+    text-align: center;
+    height: 5vh;
+    background-color: orange;
+    padding: 0;
+    border:none;
+    
+}
+
+.word {
+    border: solid black;
+    height: 20vh;
+    /* border-radius: 25px; */
+    /* padding: 20px 0 20px 0; */
+    margin: 15px 0 15px 0;
+    text-align: center;
+    
+}
+
+.left_word {
+    float:left;
+    width: 30%;
+    height: 100%;
+    /* border-left: solid black; */
+    border-right: solid black;
+    font-weight: bold;
+    font-size: 2em;
+    vertical-align: center;
+}
+
+.right_word {
+    float:right;
+    width: 70%;
+    /* border-right: solid black; */
+}
+
+.small_section {
+    /* height: 50%; */
+    
+}
