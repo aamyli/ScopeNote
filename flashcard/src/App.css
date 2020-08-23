@@ -37,7 +37,7 @@ button {
     font-weight: bold;
     font-size: 2em;
     vertical-align: center;
-    /* text-align: center; */
+    text-align: center;
     justify-content: center;
     
 }
