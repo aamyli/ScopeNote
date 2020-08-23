@@ -243,6 +243,9 @@ export default class SummaryList extends Component {
 
                 </div>
             </div>
+            <Button className="export" variant='light'>
+                  Export
+                </Button>
           </div>
         )
       }

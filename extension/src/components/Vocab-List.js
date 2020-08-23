@@ -264,6 +264,9 @@ export default class VocabList extends Component {
 
                 </div>
             </div>
+            <Button className="export" variant='light'>
+                  Export
+                </Button>
           </div>
         )
       }
