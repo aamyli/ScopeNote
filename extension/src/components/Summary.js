@@ -7,7 +7,7 @@ import {
   Link,
   useHistory
 } from "react-router-dom";
-import "./css/vocab.css";
+import "./css/summary.css";
 import Word from "./word";
 
 
