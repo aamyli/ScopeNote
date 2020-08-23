@@ -1,0 +1,8 @@
+﻿body {
+    height: 600px;
+    width: 500px;
+    background-image: url("../assets/background.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    overflow: scroll;
+}
