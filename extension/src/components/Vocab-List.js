@@ -32,7 +32,7 @@ export default class VocabList extends Component {
       init = () => {
         console.log('iniat')
         console.log(this.state.store)
-        axios.get('http://localhost:5000/vocab')
+        axios.get('http://127.0.0.1:5000/vocab')
           .then(res => {
             this.setState(res.data)
           }) 
@@ -151,7 +151,7 @@ export default class VocabList extends Component {
 
         let updatedRow = store.filter((word, i) => parseInt(i) === parseInt(row))[0]
         updatedRow[column] = value
-        axios.put(('http://localhost:5000/vocab'),
+        axios.put(('http://127.0.0.1:5000/vocab'),
           {store: store}
         )
         this.setState({

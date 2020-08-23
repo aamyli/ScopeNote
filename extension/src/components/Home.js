@@ -52,19 +52,21 @@ export default function Home() {
         //this.tabLink();
         return ( 
         <div className="home">
+            <div className="refresh">
+              <Link to='/vocab' onClick={genNotes}>
+                <Button variant='outline-light'>
+                  Refresh
+                </Button>
+              </Link>
+            </div>
             <div className="title">
-              <img src={require("./assets/ScopeNote.png")} alt="SCOPE NOTE" className="scopenote"/>
+              <img src={require("./assets/ScopeNote NEW.png")} alt="SCOPE NOTE" className="scopenote"/>
             </div>
             <h4 className="intro">Faster. Better. Smarter. </h4>
             <div className="options">
               <Link to="/vocab">  
                 <Button variant="outline-warning">
                   Generate Key Words
-                </Button>
-              </Link>
-              <Link to='/vocab' onClick={genNotes}>
-                <Button variant='outline-warning'>
-                  Refresh
                 </Button>
               </Link>
             </div>
@@ -74,6 +76,9 @@ export default function Home() {
                   Generate Article Summary
                 </Button>
               </Link>
+            </div>
+            <div className="options">
+
             </div>
             <div className="owl-div">
               <img src={require("./assets/owl.png")} alt="Scotty" className="scotty"/>

@@ -32,7 +32,7 @@ export default class SummaryList extends Component {
       init = () => {    
         console.log('iniat')
         console.log(this.state.store)    
-        axios.get('http://localhost:5000/summary')
+        axios.get('http://127.0.0.1:5000/summary')
           .then(res => {
             this.setState(res.data)
           })  
@@ -150,7 +150,7 @@ export default class SummaryList extends Component {
         let updatedRow = store.filter((point, i) => parseInt(i) === parseInt(row))[0]
         updatedRow[column] = value
     
-        axios.put(('http://localhost:5000/summary'),
+        axios.put(('http://127.0.0.1:5000/summary'),
           {store: store}
         )
 

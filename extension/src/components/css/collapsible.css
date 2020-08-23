@@ -24,6 +24,7 @@
 
 .addWord {
     margin: 30px;
+    padding: 10px;
     background-color: rgb(255, 208, 0);
     color: rgb(168, 168, 168);
     border-style: solid;
@@ -33,6 +34,7 @@
 
 .addPoint {
     margin: 30px;
+    padding: 10px;
     background-color: rgb(255, 208, 0);
     color: rgb(168, 168, 168);
     border-style: solid;
