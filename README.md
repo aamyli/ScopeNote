@@ -35,3 +35,17 @@ Specifically in terms of the usage of Microsoft Azure, we leveraged Azure’s Te
 # what's next
 
 Moving forward, we hope ScopeNote can be a tool we use in a crunch if we need to synthesize a document or information from a website. As first year students, we’re venturing into a new level of challenge in university, and thus may leverage this program in a pinch. Aside from our personal use, there is a lot of potential for growth with ScopeNote. The most immediate steps that can be taken are to develop a platform for PDFs to be uploadable through the extension itself, as opposed to having them downloaded and opened on a browser. The development of a local database, where students can store past data would also be helpful. In the future, there may also be more work done in terms of machine learning or text-processing algorithms, which in turn opens up a wide range of possibilities. For example, we could explore using ML to recognize graphical representations of data such as bar, pie, and line graphs, and convert them into meaningful, text-based data for students in their notes. Hopefully with improved algorithms, we can also improve upon the keyword and summary sentence selections to better represent the articles from which they’re pulled. With these additions, we believe ScopeNote could feasibly go from a proof-of-concept idea to genuinely applicable, if we chose to continue development in the future.
+
+# to run 
+
+Currently, ScopeNote is limited to the local server. 
+To run, one requires the source code & flask installed.
+
+To run backend: 
+- set directory to flask
+- run command "env FLASK_APP=hello.py flask run"
+
+To try extension:
+- go to chrome://extensions/
+- select "Load Unpacked" at the top left
+- upload the extension/build folder
