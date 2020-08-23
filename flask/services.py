@@ -228,7 +228,7 @@ def get_keylist(url):
         vocab.append({
             'word': k,
             'definition': word_def,
-            'note': 'Add notes here',
+            'note': 'Add notes here to better your understanding!',
         })
 
     json_objs = {'vocab': vocab, 'summary': summary}
