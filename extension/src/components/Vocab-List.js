@@ -29,17 +29,38 @@ export default class VocabList extends Component {
         },
       }
 
+      init = () => {
+        console.log('iniat')
+        console.log(this.state.store)
+        axios.get('http://localhost:5000/vocab')
+          .then(res => {
+            this.setState(res.data)
+          }) 
+      }
+      
       state = this.initialState
       firstEditable = React.createRef()
 
       // im trying like this
       componentDidMount() {
         console.log("here")
-        axios.get('http://127.0.0.1:5000/vocab')
-          .then(
-            console.log("received")
-          )
+        let link = 'http://www.topsprogram.ca/all-the-worlds-a-stage/'
+        // axios.get('http://127.0.0.1:5000/link/' + link)
+        //   .then(res => {
+        //     console.log("received")
+        //     console.log(res.data['vocab'])
+            
+        // //   })
+        // axios.get('http://localhost:5000/vocab')
+        //   .then(res => {
+        //     this.state = res.data
+        //     console.log(res.data)
+        //   })
+        // console.log(this.state)
+        this.init()
       }
+
+      componentDidUpdate(prevProps, prevState, snapshot) {}
     
       addRow = () => {
         const { store, row } = this.state
@@ -127,10 +148,12 @@ export default class VocabList extends Component {
           },
           target: { value },
         } = event
-    
+
         let updatedRow = store.filter((word, i) => parseInt(i) === parseInt(row))[0]
         updatedRow[column] = value
-    
+        axios.put(('http://localhost:5000/vocab'),
+          {store: store}
+        )
         this.setState({
           store: store.map((word, i) => (word[column] === row ? updatedRow : word)),
         })
@@ -138,6 +161,7 @@ export default class VocabList extends Component {
 
     
       render() {
+        // this.init()
         const {
           store,
           row: { word, definition, note },

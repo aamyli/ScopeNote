@@ -1,0 +1,11 @@
+{
+    store: [
+		{ id: 1, word: 'hello', definition: 'this is the definition', note: 'extra notes' },
+		{ id: 2, word: 'word2', definition: 'this is the definition!', note: 'xx' },
+    ],
+    row: {
+        word: 'Add Word',
+        definition: 'Add Definition',
+        note: 'Add Notes'
+	},
+}

@@ -26,6 +26,31 @@ export default function Home() {
       );
     }
   
+    let vocab;
+    let summary;
+
+    const findNotes = () => {
+      // axios.get('localhost:5000/db')
+      //   .then(res => {
+      //     console.log('found existing notes')
+      //     data = res.data
+      //     vocab = data['vocab']
+      //     summary = data['summary']
+      //   })
+      console.log('findnotes')
+    }
+    
+    const genNotes = () => {
+      let link = 'http://www.topsprogram.ca/all-the-worlds-a-stage/'
+      // axios.get('http://127.0.0.1:5000/link/' + link)
+      //   .then(res => {
+      //     console.log("received")
+      //     console.log(res.data['vocab'])
+            
+      //   })
+      console.log('make get request')
+    }
+
         //this.tabLink();
         return ( 
         <div className="home">
@@ -34,9 +59,14 @@ export default function Home() {
             </div>
             <h4 className="intro">Faster. Better. Smarter. </h4>
             <div className="options">
-              <Link to="/vocab">  
+              <Link to="/vocab" onClick={findNotes}>  
                 <Button variant="outline-warning">
                   Generate Key Words
+                </Button>
+              </Link>
+              <Link to='/vocab' onClick={genNotes}>
+                <Button variant='outline-warning'>
+                  Refresh
                 </Button>
               </Link>
             </div>

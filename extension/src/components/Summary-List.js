@@ -1,6 +1,7 @@
 // ALL CONTENT EDITABLE THINGS HERE
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import axios from 'axios'
 import ContentEditable from 'react-contenteditable'
 import { Table, Button } from 'semantic-ui-react'
 import {
@@ -25,9 +26,37 @@ export default class SummaryList extends Component {
         },
       }
     
+      init = () => {    
+        console.log('iniat')
+        console.log(this.state.store)    
+        axios.get('http://localhost:5000/summary')
+          .then(res => {
+            this.setState(res.data)
+          })  
+      }
+      
       state = this.initialState
       firstEditable = React.createRef()
     
+      componentDidMount() {
+        // console.log("didmount")
+        // let link = 'http://www.topsprogram.ca/all-the-worlds-a-stage/'
+        // axios.get('http://127.0.0.1:5000/link/' + link)
+        //   .then(res => {
+        //     console.log("received")
+        //     console.log(res.data['vocab'])
+            
+        //   })
+        // axios.get('http://localhost:5000/summary')
+        //   .then(res => {
+        //     this.state = res.data
+        //     console.log(res.data)
+        //   })
+        this.init()
+      }
+
+      componentDidUpdate(prevProps, prevState, snapshot) {}
+
       addRow = () => {
         const { store, row } = this.state
         // const trimSpaces = string => {
@@ -118,6 +147,10 @@ export default class SummaryList extends Component {
         let updatedRow = store.filter((point, i) => parseInt(i) === parseInt(row))[0]
         updatedRow[column] = value
     
+        axios.put(('http://localhost:5000/summary'),
+          {store: store}
+        )
+
         this.setState({
           store: store.map((point, i) => (point[column] === row ? updatedRow : point)),
         })

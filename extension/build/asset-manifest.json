@@ -1,11 +1,11 @@
 {
   "main.css": "static/css/main.98b0e117.css",
   "main.css.map": "static/css/main.98b0e117.css.map",
-  "main.js": "static/js/main.11573028.js",
-  "main.js.map": "static/js/main.11573028.js.map",
-  "static/media/ScopeNote.png": "static/media/ScopeNote.d2e1ca21.png",
-  "static/media/background.png": "static/media/background.fd58466c.png",
-  "static/media/background3.png": "static/media/background3.22c04fbc.png",
-  "static/media/logo.svg": "static/media/logo.5d5d9eef.svg",
-  "static/media/owl.png": "static/media/owl.4d84240d.png"
+  "main.js": "static/js/main.3c39f9bb.js",
+  "main.js.map": "static/js/main.3c39f9bb.js.map",
+  "static\\media\\ScopeNote.png": "static/media/ScopeNote.d2e1ca21.png",
+  "static\\media\\background.png": "static/media/background.fd58466c.png",
+  "static\\media\\background3.png": "static/media/background3.22c04fbc.png",
+  "static\\media\\logo.svg": "static/media/logo.ee7cd8ed.svg",
+  "static\\media\\owl.png": "static/media/owl.4d84240d.png"
 }

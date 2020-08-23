@@ -10,12 +10,6 @@ import {
 import "./css/vocab.css";
 import Word from "./word";
 
-
-
-
-
-
-
 export default function Vocab() {
     //let history = useHistory();
     // goHome() { 
