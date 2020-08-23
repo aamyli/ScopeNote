@@ -3,6 +3,13 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import ContentEditable from 'react-contenteditable'
 import { Table, Button } from 'semantic-ui-react'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useHistory
+} from "react-router-dom";
 // import Collapsible from 'react-collapsible';
 // import "./css/collapsible.css";
 
@@ -124,7 +131,13 @@ export default class SummaryList extends Component {
         } = this.state
     
         return (
-          <div className="App">
+          <div className="Summary">
+            <div className="header">
+                <Link to="/">    
+                    <img src={require("./assets/arrow.png")} alt="back" className="back-button"/>
+                </Link>
+                <h1>Summary</h1>
+            </div>
               <div>
                 {store.map((row, i) => {
                   return (

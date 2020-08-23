@@ -28,7 +28,7 @@ export default function App() {
 
 
           <Route path="/summary">
-              <Summary></Summary>
+              {/* <Summary></Summary> */}
               <SummaryList></SummaryList>
           </Route>
 
