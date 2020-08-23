@@ -3,9 +3,17 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios';
 import ContentEditable from 'react-contenteditable'
-import { Table, Button } from 'semantic-ui-react'
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Collapsible from 'react-collapsible';
 import "./css/collapsible.css";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useHistory
+} from "react-router-dom";
 
 
 export default class VocabList extends Component {
@@ -136,11 +144,17 @@ export default class VocabList extends Component {
         } = this.state
     
         return (
-          <div className="App">
+          <div className="Vocab">
+              <div className="header">
+                <Link to="/">    
+                    <img src={require("./assets/arrow.png")} alt="back" className="back-button"/>
+                </Link>
+                <h1>Key Words</h1>
+            </div>
               <div>
                 {store.map((row, i) => {
                   return (
-                    <div key={row.id}>
+                    <div className="word-div" key={row.id}>
                         <Collapsible trigger={row.word} className="collapsible">
                             <ContentEditable
                             html={row.definition}
@@ -164,7 +178,7 @@ export default class VocabList extends Component {
                             onChange={this.handleContentEditableUpdate}
                             />
 
-                            <Button
+                            <Button className="delete-button" variant="light"
                             onClick={() => {
                                 this.deleteRow(row.id)
                             }}
@@ -220,7 +234,7 @@ export default class VocabList extends Component {
                       onChange={this.handleContentEditable}
                     />
 
-                    <Button disabled={!word || !definition} onClick={this.addRow}>
+                    <Button className="add-button" variant="light" disabled={!word || !definition} onClick={this.addRow}>
                       Add
                     </Button>
 

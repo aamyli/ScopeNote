@@ -1,14 +1,32 @@
 .Collapsible {
-    background-color: gray;
+    background-color: white;
+    margin: 10px;
+    margin-left: 30px;
+    margin-right: 30px;
+    padding: 10px;
+    border-style: solid;
+    border-width: 5px;
+    border-color: orange;
+}
+
+.delete-button, .add-button {
+    margin-top: 20px;
+}
+
+.add-button {
     margin: 10px;
 }
 
 .Collapsible__contentInner {
-    background-color: pink
+    background-color: rgb(255, 196, 2);
+    padding: 10px;
 }
 
 .addWord {
-    margin: 10px;
-    background-color: yellow;
+    margin: 30px;
+    background-color: rgb(255, 208, 0);
     color: rgb(168, 168, 168);
+    border-style: solid;
+    border-width: 5px;
+    border-color: white;
 }

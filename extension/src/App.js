@@ -21,7 +21,7 @@ export default function App() {
       <div className="ext">
         <Switch>
           <Route path="/vocab">
-              <Vocab></Vocab>
+              {/* <Vocab></Vocab> */}
               {/* VV THIS FILE IS WHERE ALL THE CONTENT EDITABLE STUFF IS VV */}
               <VocabList></VocabList>
           </Route>
