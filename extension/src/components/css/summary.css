@@ -29,6 +29,10 @@
     margin-bottom: 0;
 }
 
+.definition-p {
+    font-size: 15px;
+}
+
 .words {
     margin-left: 30px;
 }

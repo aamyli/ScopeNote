@@ -2,7 +2,8 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import ContentEditable from 'react-contenteditable'
-import { Table, Button } from 'semantic-ui-react'
+import Button from 'react-bootstrap/Button';
+import { Table } from 'semantic-ui-react'
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,18 +11,20 @@ import {
   Link,
   useHistory
 } from "react-router-dom";
-// import Collapsible from 'react-collapsible';
-// import "./css/collapsible.css";
+import Collapsible from 'react-collapsible';
+import "./css/collapsible.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 export default class SummaryList extends Component {
     initialState = {
         store: [
-          { id: 1, point: "this is point1" },
-          { id: 2, point: "this is point2" },
+            { id: 1, point: "Main point 1", note: 'extra notes'},
+            { id: 2, point: "Main point 2", note: 'extra notes'},
         ],
         row: {
-          point: 'Add point here'
+            point: 'Add point here',
+            note: 'Add Notes'
         },
       }
     
@@ -30,23 +33,23 @@ export default class SummaryList extends Component {
     
       addRow = () => {
         const { store, row } = this.state
-        // const trimSpaces = string => {
-        //   return string
-        //     .replace(/&nbsp;/g, '')
-        //     .replace(/&amp;/g, '&')
-        //     .replace(/&gt;/g, '>')
-        //     .replace(/&lt;/g, '<')
-        // }
-        // const trimmedRow = {
-        //   ...row,
-        //   word: trimSpaces(row.word),
-        // }
+        const trimSpaces = string => {
+           return string
+             .replace(/&nbsp;/g, '')
+             .replace(/&amp;/g, '&')
+             .replace(/&gt;/g, '>')
+             .replace(/&lt;/g, '<')
+         }
+         const trimmedRow = {
+           ...row,
+           point: trimSpaces(row.point),
+         }
     
         row.id = store.length + 1
     
         this.setState({
-          store: [...store],
-          row: this.initialState.row,
+            store: [...store, trimmedRow],
+            row: this.initialState.row,
         })
     
         this.firstEditable.current.focus()
@@ -127,7 +130,7 @@ export default class SummaryList extends Component {
       render() {
         const {
           store,
-          row: { point },
+          row: { point, note },
         } = this.state
     
         return (
@@ -141,33 +144,32 @@ export default class SummaryList extends Component {
               <div>
                 {store.map((row, i) => {
                   return (
-                    <div key={row.id}>
-                        
+                    <div className="point-div" key={row.id}>
+                        <Collapsible trigger={row.point} className="collapsible">
                             <ContentEditable
-                            html={row.point}
-                            data-column="point"
+                            html={row.note}
+                            data-column="note"
                             data-row={i}
                             className="content-editable"
                             //   onKeyPress={this.validateNumber}
                             onPaste={this.pasteAsPlainText}
                             onFocus={this.highlightAll}
                             onChange={this.handleContentEditableUpdate}
-                            />
-
-
-
-                            <Button
-                            onClick={() => {
-                                this.deleteRow(row.id)
-                            }}
-                            >
-                            Delete
+                          />
+                                                  
+                          <Button className="delete-button" variant="light"
+                              onClick={() => {
+                                  this.deleteRow(row.id)
+                              }}
+                          >
+                                  Delete
                             </Button>
+                         </Collapsible>
 
 
                         {/* <ContentEditable
-                          html={row.word}
-                          data-column="word"
+                          html={row.point}
+                          data-column="point"
                           data-row={i}
                           className="content-editable"
                         //   onKeyPress={this.disableNewlines}
@@ -189,10 +191,21 @@ export default class SummaryList extends Component {
                       onPaste={this.pasteAsPlainText}
                       onFocus={this.highlightAll}
                       onChange={this.handleContentEditable}
+                        />
+
+                    <ContentEditable
+                        html={note}
+                        data-column="note"
+                        className="content-editable"
+                        //   onKeyPress={this.disableNewlines}
+                        onPaste={this.pasteAsPlainText}
+                        onFocus={this.highlightAll}
+                        onChange={this.handleContentEditable}
                     />
 
-                    <Button disabled={!point} onClick={this.addRow}>
-                      Add
+
+                    <Button className="add-button" variant="light" disabled={!point || !note} onClick={this.addRow}>
+                            Add
                     </Button>
 
                 </div>
