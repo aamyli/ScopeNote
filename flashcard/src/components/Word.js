@@ -6,11 +6,11 @@ const Word = ( {word, defin, note} ) => {
     return (
         <div className='word'>
             <div className='left_word'>
-                {word}
+                <p>{word}</p>
             </div>
             <div className='right_word'>
-                <div className='small_section'>{defin}</div>
-                <div className='small_section'>{note}</div>
+                <div className='small_section'><p style={{margin:0}}>{defin}</p></div>
+                <div className='small_section'><p style={{margin:0}}>{note}</p></div>
             </div>
         </div>
     )

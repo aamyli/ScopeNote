@@ -24,9 +24,11 @@ function App() {
 
   return (
     <div className="App container">
-        <button onClick={get_data} className='w-75'>Create Flashcards!</button>
+        <button onClick={get_data}>Create Flashcards!</button>
+        <div className='title'>Vocabulary</div>
         {vocab.map(word => <Word word={word['word']} defin={word['definition']} note={word['note']}></Word>)}
-        <Summary points={summary}></Summary>
+        <div className='title'>Summary</div>
+        <Summary points={summary} style={{margin: '10px 0 10px 0'}}></Summary>
     </div>
   );
 }
