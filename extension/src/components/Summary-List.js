@@ -1,6 +1,7 @@
 // ALL CONTENT EDITABLE THINGS HERE
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import axios from 'axios';
 import ContentEditable from 'react-contenteditable'
 import Button from 'react-bootstrap/Button';
 import { Table } from 'semantic-ui-react'
@@ -17,19 +18,69 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 export default class SummaryList extends Component {
-    initialState = {
+    constructor(props) {
+      super(props);
+      this.state = {
+        test: [],
         store: [
-            { id: 1, point: "Main point 1", note: 'extra notes'},
-            { id: 2, point: "Main point 2", note: 'extra notes'},
+          { id: 1, point: "Main point 1", note: 'extra notes'},
+          { id: 2, point: "Main point 2", note: 'extra notes'},
         ],
         row: {
             point: 'Add point here',
             note: 'Add Notes'
         },
       }
-    
-      state = this.initialState
+    }  
+  
+
       firstEditable = React.createRef()
+
+      componentDidMount() {
+        // this.getVocab();
+        axios.get('http://127.0.0.1:5000/link/https://en.wikipedia.org/wiki/Ramen')
+          .then(response => response.data)
+          .then(response => {this.setState({
+              test: response.summary
+              })
+              console.log(this.state.test)
+              this.savePoint()
+            })
+          .then(
+            console.log("WHUE"),
+            console.log(this.state.test),
+
+            console.log("HERELSL")
+          )
+          // .then(this.saveVocab())
+          console.log(this.state.test);
+          // console.log(this.state.store);
+            
+            // console.log(response)
+            
+          
+        //this.saveVocab();
+        
+      }
+
+
+      componentDidUpdate(prevProps, prevState, snapshot) {
+      }
+
+      savePoint = () => {
+        console.log("THISSTATE HERE");
+        console.log(this.state.test);
+        for (let i = 0; i < 8; i++) {
+          this.state.store.push({
+            id: i+3,
+            point: this.state.test[i],
+            note: "Add note here"
+          })
+        }
+        console.log(this.state.store);
+      }
+
+
     
       addRow = () => {
         const { store, row } = this.state

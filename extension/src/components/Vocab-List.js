@@ -17,29 +17,175 @@ import {
 
 
 export default class VocabList extends Component {
-    initialState = {
-        store: [
-          { id: 1, word: 'hello', definition: 'this is the definition', note: 'extra notes' },
-          { id: 2, word: 'word2', definition: 'this is the definition!', note: 'xx' },
-        ],
-        row: {
-          word: 'Add Word',
-          definition: 'Add Definition',
-          note: 'Add Notes'
-        },
-      }
+    
+  
+    // constructor(props) {
+    //   super(props);
+    //   this.test = [];
+    //   this.store = [
+    //     {
+    //       word: '',
+    //       definition: '',
+    //       note: ''
+    //     }
+    //   ];
+    //   this.row = [
+    //     {
+    //       word: "Add word",
+    //       definition: "Add definition",
+    //       note: "Add notes"
+    //     }
+    //   ]
+    // }
+    // tabLink = () => {
+    //   /* eslint-disable no-undef */
+    //   chrome.tabs.query({'active': true, 'windowId': chrome.windows.WINDOW_ID_CURRENT},
+    //    function(tabs){
+    //       alert(tabs[0].url);
+    //       var urlTab = tabs[0].url;
+    //       return urlTab;
+    //    }
+    // );
+    //   }
 
-      state = this.initialState
+    constructor(props) {
+      super(props);
+
+      this.state = {
+          loop: 0,
+          // urlTab: tabLink(),
+          test: [],
+          store: [
+            { id: 1, word: 'Vocabulary Word', definition: 'The definition is here', note: 'You can add extra notes!' },
+          ],
+          row: {
+            word: 'Add Word',
+            definition: 'Add Definition',
+            note: 'Add Notes'
+          },
+        }
+    }
+
+
+  
+      // this.state = {
+      //   test: [],
+      //   store: [
+      //     { id: 1, word: 'hello', definition: 'this is the definition', note: 'extra notes' },
+      //     { id: 2, word: 'word2', definition: 'this is the definition!', note: 'xx' },
+      //   ],
+      //   row: {
+      //     word: 'Add Word',
+      //     definition: 'Add Definition',
+      //     note: 'Add Notes'
+      //   },
+      // }
+
+      // state = this.initialState
       firstEditable = React.createRef()
 
-      // im trying like this
+      // i'm stuck here
       componentDidMount() {
-        console.log("here")
-        axios.get('http://127.0.0.1:5000/vocab')
+        // this.getVocab();
+        axios.get('http://127.0.0.1:5000/link/https://theconversation.com/why-companies-were-so-quick-to-endorse-black-lives-matter-142532')
+          .then(response => response.data)
+          .then(response => {this.setState({
+              test: response.vocab
+              })
+              console.log(this.state.test),
+              this.state.loop = this.state.loop+1,
+              console.log(this.state.loop),
+              this.saveVocab()
+            })
           .then(
-            console.log("received")
+            console.log("WHUE"),
+            console.log(this.state.test),
+
+            console.log("HERELSL")
           )
+          // .then(this.saveVocab())
+          console.log(this.state.test);
+          console.log(this.state.store);
+            
+            // console.log(response)
+            
+          
+        //this.saveVocab();
+        
       }
+
+      componentDidUpdate(prevProps, prevState, snapshot) {
+        // if (prevState.loop !== this.state.loop && this.state.loop < 2) {
+        //   console.log(this.state.store.length);
+        //   this.saveVocab();
+        //   this.state.loop = this.state.loop+1;
+        // }
+      }
+      
+
+      //   console.log("here")
+      //   axios.get('http://127.0.0.1:5000/link/http://www.topsprogram.ca/all-the-worlds-a-stage/')
+      //     .then(response => response.data)
+      //     .then(response => this.setState({
+      //       temp = response.vocab
+      //     })
+
+      //     )
+      //   console.log(temp);
+
+      // }
+            
+      // getVocab = () => {
+      //   for (let i = 0; i < 10; i++) {
+      //     const response =  axios.get('http://127.0.0.1:5000/link/http://www.topsprogram.ca/all-the-worlds-a-stage/');
+      //     this.setState( {
+      //       keepAll: [...this.state.store, response.data]
+      //       // dogImages: [...this.state.dogimages, response.data]
+      //     }
+      //     )
+          
+      //   }
+      // } 
+      
+      saveVocab = () => {
+        console.log("THISSTATE HERE");
+        console.log(this.state.test);
+        for (let i = 0; i < 8; i++) {
+          this.state.store.push({
+            id: i+3,
+            word: this.state.test[i].word,
+            definition: this.state.test[i].definition,
+            note: this.state.test[i].note
+          })
+        }
+        console.log(this.state.store);
+      }
+
+      // saveVocab = () => {
+      //   console.log("SAVE VOCAB");
+      //   console.log(this.state.test);
+      //   for (let i = 0; i < 10; i++) {
+      //     const toAdd = {
+      //       id: i + 3,
+      //       word: this.state.test.word,
+      //       definition: this.test.definition,
+      //       note: this.test.note
+      //     };
+      //     this.setState({store: [...this.state.store, toAdd]});
+      //     console.log(this.store);
+      //     this.store.push({
+      //       id: i+3,
+      //       word: this.test.word,
+      //       definition: this.test.definition,
+      //       note: this.test.note
+      //     })
+      //   }
+      //   console.log(this.store);
+      // }
+      
+
+      
+
     
       addRow = () => {
         const { store, row } = this.state
@@ -59,7 +205,7 @@ export default class VocabList extends Component {
     
         this.setState({
           store: [...store, trimmedRow],
-          row: this.initialState.row,
+          row: this.state.row,
         })
     
         this.firstEditable.current.focus()
