@@ -3,8 +3,8 @@ from pprint import pprint
 import diffbot
 import os
 
-subscription_key = "80ebba8cc9bf43fab4ef65f8891e8737"
-endpoint = "https://justin.cognitiveservices.azure.com/"
+subscription_key = ""
+endpoint = ""
 
 keyphrase_url = endpoint + "/text/analytics/v3.0/keyphrases"
 
